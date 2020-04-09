@@ -1,0 +1,70 @@
+C#企业级开发技术练习6答题卡
+
+班级：     信息管理2班
+姓名：     张适
+学号：     20190307222
+
+注：请将答案放置在序号下方。*/
+
+（一）
+using System;
+
+namespace ConsoleApp1
+{
+    class Teacher<T>
+    {
+        public void field(string fieldName, T t)
+        {
+            Console.WriteLine($"{fieldName}:{t},类型是{t.GetType().Name}");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Teacher<string> stu1 = new Teacher<string>();
+            stu1.field("姓名", "zhao");
+            Teacher<decimal> stu2 = new Teacher<decimal>();
+            stu2.field("工资", 8202.34M);
+            Teacher<Boolean> stu3 = new Teacher<Boolean>();
+            stu3.field("编制", false);
+            Teacher<Single> stu4 = new Teacher<Single>();
+            stu4.field("评价", 90.23f);
+            Teacher<DateTime> stu5 = new Teacher<DateTime>();
+            stu5.field("工作日期", new DateTime(2001, 8, 31));
+
+        }
+    }
+}
+
+
+（二）
+using System;
+
+namespace ConsoleApp2
+{
+    interface IPay<P, Q>
+    {
+        void Log(P x, Q y);
+    }
+    class Employee<T> : IPay<T,string>
+    {
+        public void Log(T pay,string name)=>
+            Console.WriteLine($"{name}:{pay},类型是{pay.GetType().Name}");
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee<Int64> c1 = new Employee<Int64>();
+            c1.Log(30000,"年终奖");
+            Employee<double> c2 = new Employee<double>();
+            c2.Log(54321.67,"核增绩效");
+        }
+    }
+}
+
+
+
